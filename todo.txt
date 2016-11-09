@@ -1,0 +1,98 @@
+comment for the class
+comment for the function
+sesion check for
+- is logged in
+- user type
+
+1 - user
+2 - admin
+
+
+redirect -- full page refresh flashdata
+$this->load->view  --  url wont change $data
+
+wrong function name
+function - verb
+class - noun
+
+'user' => $this->input->post('email'),
+>> user? email?
+
+new line between logically separate code.. and between two functions
+
+Requirements document
+----------------------
+
+There will be two roles
+- user
+- admin
+
+Pages
+-----
+There will be following pages for user
+Login
+Signup
+Dashboard
+Email activation success page
+
+There will be the following pages for admin
+Login
+Manage users page  (dashboard)
+
+
+Functionality
+----------------
+Login
+ - user can enter email and password and login
+ - implement all validation checks at front end ( bootstrap validator ) and backend
+- Take care of all error scenarios
+
+Signup
+ - user can singup with email and password.
+ - an activation email will be sent to the user upon activation. Upon activaiton the account activation success page will be shown.
+ - Take care of all error scenarios
+
+
+facebook login
+load more with ajax
+full text search
+pagination
+
+delete from a table - "Are you sure you want to delete?"
+
+bootstrap validtor
+acl
+ecommerce filter - ( jquery_)
+
+
+CMS  - wordpress...
+
+unknown framework
+
+bugs
+-----
+include confirm password
+show all error messages as $data (insert - if condition and error mesage )
+add exception handling
+
+activaion email
+ - md5 value
+ - send smtp google server
+ - one time only (  null field )
+
+check if session is set AND is session type is user (usertype authorization )
+
+code clean -- comment, space, newline, variable/function naming, bracket
+
+change session check in all places.. and instead use redirect
+
+include bootstrap jquery validator plugin (formvalidation.io)
+
+add in route
+
+user guide remove
+unwanted files remove - from assets, js, img, css
+
+chmod directory ?, file ?
+
+hostinger host FTP
