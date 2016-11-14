@@ -49,6 +49,30 @@ class LoginModel extends CI_Model
         }
 
         /**
+        *Function to check whether user disabled
+        *@param array $data Data of user
+        *@return boolean Return true if password match, else false
+        **/
+        public function checkIfUserDisabled($data)
+        {
+            $this->db->select('status');
+            $this->db->where('email',$data['email']);
+            $query = $this->db->get('userprofile');
+
+            foreach ( $query->result() as $row )
+            {
+                $user_status= $row->status;
+            }
+
+            if( $user_status == 1){
+                return true;
+            }    
+            else{
+                return false;
+            }
+        }
+
+        /**
         *Function to verify password
         *@param array $data Data of user
         *@return boolean Return true if password match, else false
