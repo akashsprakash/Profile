@@ -34,5 +34,32 @@ class SignupModel extends CI_Model
             $result= $this->db->insert('userprofile',$data);
             return $result;
         }
+
+        /**
+        * Function to activate user
+        * @param array $data User details from controller
+        * @return boolean $result Return true if updation performed, else false
+        **/
+        public function activateUser($data)
+        {
+            $this->db->select('activation');
+            $this->db->where('email',$data['email']);
+            $query = $this->db->get('userprofile');
+
+            foreach ($query->result() as $row) 
+            {
+                $user_status= $row->activation;
+            }
+            if ($user_status === $data['activation']) {
+                $update_status = array('activation' => null);
+                $this->db->where('email',$data['email']);
+                $result = $this->db->update('userprofile' ,$update_status);
+                return $result;
+            }
+            else{
+                redirect('my404');
+            }
+        }
+
     }
 ?>

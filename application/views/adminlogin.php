@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Login</title>
+        <title>Admin Login</title>
 
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -75,6 +75,11 @@
                                 </div>
 
                             </form>
+                        </div>
+
+                        <!-- Signup -footer -->
+                        <div class="panel-footer">
+                            &nbsp;
                         </div>
 
                     </div>

@@ -26,6 +26,30 @@ class LoginModel extends CI_Model
 
         /**
         *Function to verify password
+        *@param array $data Data of admin
+        *@return boolean Return true if password match, else false
+        **/
+        public function checkIfUserActivated($data)
+        {
+            $this->db->select('activation');
+            $this->db->where('email',$data['email']);
+            $query = $this->db->get('userprofile');
+
+            foreach ( $query->result() as $row )
+            {
+                $user_status= $row->activation;
+            }
+
+            if( empty($user_status)){
+                return true;
+            }    
+            else{
+                return false;
+            }
+        }
+
+        /**
+        *Function to verify password
         *@param array $data Data of user
         *@return boolean Return true if password match, else false
         **/

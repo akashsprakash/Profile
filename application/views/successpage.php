@@ -26,7 +26,7 @@
             {
               font-family: 'Open Sans';
               font-weight: 300;
-              color: #ccc;
+              color: #A1A1A1;
               font-size: 1.9em;
             }
 
@@ -81,6 +81,7 @@
                   <span class="icon-bar">
                     <i class="glyphicon glyphicon-tower" aria-hidden="true"></i>
                   </span>
+                  <h3>Activation Link has been sent to your mail.</h3>
                   <!-- Login Link -->
                   <a href="<?php echo base_url();?>index.php/home"><h3>Login</h3></a>
                 </div>

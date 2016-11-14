@@ -13,7 +13,7 @@ class AdminLoginController extends CI_Controller
         public function checkSession()
         {
             if (isset($this->session->userdata['logged_in']) && ($this->session->userdata['user_type']) == 2 ) {
-
+                $this->load->view('admindashboard');
             }
             else{
                 $this->load->view('adminlogin');
@@ -27,7 +27,7 @@ class AdminLoginController extends CI_Controller
         *@return void
         */
         
-        public function loginUser()
+        public function loginAdmin()
         {
             // Ensuring post request
             if ($this->input->post()) {

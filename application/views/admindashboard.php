@@ -31,9 +31,37 @@
 
             .footer 
             {
+                position: fixed;
+                bottom: 0;
                 width: 100%;
             }  
         </style>
+        <script type="text/javascript">
+            $(document).ready(function()
+            {
+                $("#list").click(function(event)
+                {
+                    event.preventDefault();
+
+                    // ajax
+                    $.ajax(
+                    {
+                        type: "POST",
+                        url: "<?php echo base_url(); ?>" + "ajaxemailregistrationcontroller/emailregisration",
+                        // dataType- return data type from controller
+                        dataType: 'json',
+                        success: function(result)
+                        {
+                            // .html for html display
+                        },
+                        error: function()
+                        {
+                            alert("Error");
+                        }
+                    });
+                });
+            });
+        </script>
     </head>
     <body>
         <nav class="navbar navbar-default navbar-static-top">
@@ -69,10 +97,10 @@
                                 Account
                                 <span class="caret"></span></a>
                                 <ul class="dropdown-menu" role="menu">
-                                    <li class="dropdown-header">SETTINGS</li>
+                                    <li class="dropdown-header">Settings</li>
                                     <li class="divider"></li>
                                     <li>
-                                        <a href=" ">Logout</a>
+                                        <a href="<?php echo base_url();?>index.php/adminlogout">Logout</a>
                                     </li>
                                 </ul>
                         </li>
@@ -83,29 +111,20 @@
             <div class="container-fluid main-container">
                 <div class="col-md-2 sidebar">
                     <ul class="nav nav-pills nav-stacked">
-                        <li class="active"><a href=" ">List Users</a></li>
-                        <!-- <li><a href="#">List Users</a></li> -->
+                        <li class="active">
+                            <button class="btn btn-primary" id="list">List Users</button>
+                        </li>
+                        <!-- <li><a href="#" >Link</a></li> -->
                     </ul>
                 </div>
+
                 <div class="col-md-10 content">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            Dashboard
-                        </div>
-                        <div class="panel-body">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                        </div>
-                    </div>
                 </div>
+
                 <footer class="pull-left footer">
                     <p class="col-md-12">
                         <hr class="divider">
-                        Copyright &COPY; 2015 <strong>Akash S Prakash</strong>
+                        Copyright &COPY; 2016 | Akash S Prakash
                     </p>
                 </footer>
             </div>

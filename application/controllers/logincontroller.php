@@ -51,12 +51,16 @@ class LoginController extends CI_Controller
                     
                     if ($this->loginmodel->checkIfUserExists($credentials['email'])) {
                         if ($this->loginmodel->verifyPassword($credentials)) {
-                            // setting session
-                            $credentials['logged_in'] = TRUE;
-                            $credentials['user_type'] = 1;
-                            $this->session->set_userdata($credentials);
-                            $this->checkSession();
-
+                            if ($this->loginmodel->checkIfUserActivated($credentials)) {
+                                // setting session
+                                $credentials['logged_in'] = TRUE;
+                                $credentials['user_type'] = 1;
+                                $this->session->set_userdata($credentials);
+                                $this->checkSession();
+                            }
+                            else{
+                                $this->load->view('activationError');
+                            }
                         }
                         else{
                             $this->load->view('login'); 
