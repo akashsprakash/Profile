@@ -21,5 +21,39 @@ class UserListingController extends CI_Controller
                     redirect('my404');
                 } 
             }
+
+        /**
+        *Function to list users
+        *@param void
+        *@return void
+        */
+        public function enableUser()
+            {
+                $credentials = array("id"=> $this->uri->segment(3));
+                $this->load->model('userlistingmodel');
+                if($this->userlistingmodel->userEnable($credentials)){
+                    $this->load->view('admindashboard');
+                }
+                else{
+                    redirect('my404');
+                }
+            }
+
+        /**
+        *Function to list users
+        *@param void
+        *@return void
+        */
+        public function disableUser()
+            {
+                $credentials = array("id"=> $this->uri->segment(3));
+                $this->load->model('userlistingmodel');
+                if($this->userlistingmodel->userDisable($credentials)){
+                    $this->load->view('admindashboard');
+                }
+                else{
+                    redirect('my404');
+                }
+            }
     }
 ?>

@@ -19,12 +19,29 @@ class UserListingModel extends CI_Model
         }
 
         /**
-        * Function to check status of user
+        * Function to disable user
         * @param
         * @return
         **/
-        public function checkIfUserDisabled()
+        public function userDisable($credentials)
         {
+            $data = array("status"=> 2);
+            $this->db->where('id',$credentials['id']);
+            $query = $this->db->update('userprofile',$data);
+            return $query;
+        }
+
+        /**
+        * Function to enable user
+        * @param
+        * @return
+        **/
+        public function userEnable($credentials)
+        {
+            $data = array("status"=> 1);
+            $this->db->where('id',$credentials['id']);
+            $query = $this->db->update('userprofile',$data);
+            return $query;
         }
     }
 ?>

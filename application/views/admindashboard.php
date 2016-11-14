@@ -42,17 +42,38 @@
                 $("#list").click(function(event)
                 {
                     event.preventDefault();
-
                     // ajax
                     $.ajax(
                     {
+                        url: "<?php echo base_url(); ?>" + "index.php/userlistingcontroller/listUser",
                         type: "POST",
-                        url: "<?php echo base_url(); ?>" + "ajaxemailregistrationcontroller/emailregisration",
                         // dataType- return data type from controller
                         dataType: 'json',
                         success: function(result)
                         {
-                            // .html for html display
+                            // table heading
+                            $('#table').html("<tr><th>" +"ID"+ "</th><th>" + "Email" +
+                                "</th><th>" +"User Type" + "</th><th>" + "Activation" +
+                                  "</th><th>" + "Status" + "</th></tr>");
+
+                            // user listing
+                            $.each(result.result, function(i, v) {
+                                // i is index of your 0-based array index, v is your value
+                                if (v.status == 1) {
+                                    var statusbutton="btn btn-success";
+                                    var status="Enable";
+                                    $("#table").append("<tr><td>"+v.id+"</td><td>"+v.email+"</td><td>"+v.user_type+"</td><td>"+v.activation+
+                                    '</td><td><a href="<?php echo base_url(); ?>index.php/userlistingcontroller/disableUser/'+
+                                    v.id+'"class="'+statusbutton+'">'+status+'</a></td>');
+                                }
+                                if (v.status == 2) {
+                                    var statusbutton="btn btn-danger";
+                                    var status="Disable";
+                                    $("#table").append("<tr><td>"+v.id+"</td><td>"+v.email+"</td><td>"+v.user_type+"</td><td>"+v.activation+
+                                    '</td><td><a href="<?php echo base_url(); ?>index.php/userlistingcontroller/enableUser/'+
+                                    v.id+'"class="'+statusbutton+'">'+status+'</a></td>');
+                                }
+                            });
                         },
                         error: function()
                         {
@@ -68,7 +89,8 @@
             <div class="container-fluid">
                 <!-- Brand and toggle get grouped for better mobile display -->
                 <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <button type="button" class="navbar-toggle collapsed" 
+                     data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                         <span class="sr-only">Toggle navigation</span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
@@ -92,8 +114,8 @@
                     </form>
                     <ul class="nav navbar-nav navbar-right">
                         <li class="dropdown ">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" 
-                                aria-expanded="false">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" 
+                             role="button" aria-expanded="false">
                                 Account
                                 <span class="caret"></span></a>
                                 <ul class="dropdown-menu" role="menu">
@@ -117,8 +139,10 @@
                         <!-- <li><a href="#" >Link</a></li> -->
                     </ul>
                 </div>
-
+                
                 <div class="col-md-10 content">
+                    <table class="table table-hover" id="table"> 
+                    </table>
                 </div>
 
                 <footer class="pull-left footer">
