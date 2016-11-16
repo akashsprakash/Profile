@@ -16,13 +16,16 @@ class SignUpController extends CI_Controller
             // Ensuring post request
             if ($this->input->post()) {
                 
+                $this->form_validation->set_rules('name', 'Name', 'required|max_length[35]| min_length[5]|trim|alpha_numeric');
                 $this->form_validation->set_rules('email', 'Email', 'required|valid_email|max_length[35]| min_length[5]|trim');
                 $this->form_validation->set_rules('password', 'Password','required|min_length[5]|max_length[35]|trim|alpha_numeric|matches[confirm_password]');
                 $this->form_validation->set_rules('confirm_password', 'Confirm Password','required|min_length[5]|max_length[35]|trim|alpha_numeric');
 
+                $data['email'] = $this->input->post('email');
+
                 // Validating form post
                 if ($this->form_validation->run() == FALSE){
-                    $this->load->view('signup');
+                    $this->load->view('signup',$data);
                 }
 
                 else{
@@ -33,6 +36,7 @@ class SignUpController extends CI_Controller
                     $activation_code= md5($salt.$timestamp);
                     
                     $credentials=array(
+                        'user_name' => $this->input->post('name'),
                         'email' => $this->input->post('email'),
                         'password' => md5($this->input->post('password')),
                         'activation' => $activation_code,

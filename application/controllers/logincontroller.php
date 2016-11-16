@@ -39,9 +39,11 @@ class LoginController extends CI_Controller
                 $this->form_validation->set_rules('password', 'Password',
                     'required|max_length[15]|min_length[5]|trim|alpha_numeric');
 
+                $data['email'] = $this->input->post('email');
+
                 // Validating form post
                 if ($this->form_validation->run() == FALSE){
-                    $this->load->view('login');
+                    $this->load->view('login',$data);
                 }
 
                 else{
@@ -71,12 +73,12 @@ class LoginController extends CI_Controller
                             }
                         }
                         else{
-                            $this->load->view('login'); 
+                            $this->load->view('login',$data); 
                         }
 
                     }
                     else{
-                        redirect('login'); 
+                        $this->load->view('login',$data); 
                     }
                 }
             }

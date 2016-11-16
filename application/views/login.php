@@ -12,6 +12,12 @@
         <!-- Latest compiled JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
+        <!-- Bootstrap Validator css-->
+        <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.0/css/bootstrapValidator.min.css"/>
+
+        <!-- Bootstrap Validator js -->
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.0/js/bootstrapValidator.min.js"></script>
+
         <style>
         @import url("//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css");
             body
@@ -42,8 +48,42 @@
                 background-color:#3b5998;
                 border-color:rgba(0,0,0,0.2);
             }
-            
         </style>
+        <script>
+            $(document).ready(function() {
+                $('#contactForm').bootstrapValidator({
+                    // container: '#messages',
+                    feedbackIcons: {
+                        valid: 'glyphicon glyphicon-ok',
+                        invalid: 'glyphicon glyphicon-remove',
+                        validating: 'glyphicon glyphicon-refresh'
+                    },
+                    fields: {
+                        email: {
+                            validators: {
+                                notEmpty: {
+                                    message: 'The email address is required'
+                                },
+                                emailAddress: {
+                                    message: 'The email address is not valid'
+                                }
+                            }
+                        },
+                        password: {
+                            validators: {
+                                notEmpty: {
+                                    message: 'Password cannot be empty'
+                                },
+                                stringLength: {
+                                    min: 5,
+                                    message: 'Password must be atleast 5 characters long'
+                                }
+                            }
+                        }
+                    }
+                });
+            });
+        </script>
     </head>
     <body>
         <div class="container">
@@ -58,20 +98,20 @@
                         </div>
 
                         <div class="panel-body">
-                            <form class="form-horizontal" method="POST" 
+                            <form id="contactForm" class="form-horizontal" method="POST" 
                                     action="<?php echo base_url();?>index.php/home">
 
                                 <div class="form-group">
                                     <div class="col-sm-9">
                                         <input type="email" class="form-control" name="email" placeholder="Email"
-                                            value="<?php echo set_value('email'); ?>" required>
+                                            value="<?php if (!empty($email)) { echo $email;}?>">
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <div class="col-sm-9">
                                         <input type="password" class="form-control" name="password"
-                                            placeholder="Password" required>
+                                            placeholder="Password">
                                     </div>
                                 </div>
 
@@ -93,7 +133,7 @@
                         <div align="center">
                             <a href="<?php echo base_url();?>index.php/facebook" 
                                 class="btn facebook btn-primary" role="button">
-                                <span class="fa fa-facebook">&nbsp</span>
+                                <span class="fa fa-facebook">&nbsp;</span>
                                 Signup With Facebook</a>
                         </div>
                     </div>
