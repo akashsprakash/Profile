@@ -11,7 +11,9 @@
 
         <!-- Latest compiled JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
         <style>
+        @import url("//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css");
             body
                 { 
                     background: url("/User/assets/images/background.jpg"); 
@@ -34,6 +36,13 @@
             {
                 color: red;
             }
+            .facebook
+            {
+                color:#fff;
+                background-color:#3b5998;
+                border-color:rgba(0,0,0,0.2);
+            }
+            
         </style>
     </head>
     <body>
@@ -81,7 +90,12 @@
                         <div class="panel-footer">
                             Not Registred? <a href= "<?php echo base_url();?>index.php/signup">Sign Up</a>
                         </div>
-
+                        <div align="center">
+                            <a href="<?php echo base_url();?>index.php/facebook" 
+                                class="btn facebook btn-primary" role="button">
+                                <span class="fa fa-facebook">&nbsp</span>
+                                Signup With Facebook</a>
+                        </div>
                     </div>
                 </div>
             </div>

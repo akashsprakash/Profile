@@ -35,7 +35,9 @@ class SignUpController extends CI_Controller
                     $credentials=array(
                         'email' => $this->input->post('email'),
                         'password' => md5($this->input->post('password')),
-                        'activation' => $activation_code
+                        'activation' => $activation_code,
+                        'user_type' => 1,
+                        'signup' => date("Y-m-d H:i:s")
                         );
 
                     $this->load->model('signupmodel');

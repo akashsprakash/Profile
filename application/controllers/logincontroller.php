@@ -12,7 +12,10 @@ class LoginController extends CI_Controller
         */
         public function checkSession()
         {
-            if (isset($this->session->userdata['logged_in']) && ($this->session->userdata['user_type']) == 1) {
+            if (isset($this->session->userdata['logged_in']) &&  ($this->session->userdata['user_type']) == 1) {
+                $this->load->view('dashboard');
+            }
+            elseif (isset($this->session->userdata['logged_in']) &&  ($this->session->userdata['user_type']) == 2) {
                 $this->load->view('dashboard');
             }
             else{
@@ -93,6 +96,11 @@ class LoginController extends CI_Controller
             $this->session->unset_userdata('logged_in');
             $this->session->unset_userdata('user_type');
             $this->session->sess_destroy();
+
+            $this->load->library('facebook');
+            $this->session->unset_userdata('logged_in');
+            $this->session->unset_userdata('user_type');
+            $this->facebook->destroySession();
             redirect('login'); 
         }
     }

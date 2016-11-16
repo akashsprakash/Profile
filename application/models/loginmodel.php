@@ -1,5 +1,4 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-// @.todo - comments for the class
 /**
 *Class for checking if registered user and password authentication
 **/
